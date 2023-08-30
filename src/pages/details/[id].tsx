@@ -1,4 +1,8 @@
-import { Layout } from "@/components"
+import { AuctionCard, Layout } from "@/components"
+import { BsSearch } from "react-icons/bs"
+
+
+const sample = [1,2,3]
 
 export default ()=>{
     return(
@@ -68,9 +72,35 @@ export default ()=>{
             <div className="flex flex-col items-start ">
                 <h1 className="text-gray-600 text-[32px] font-bold">Unveil the Beauty Within: Discover Extraordinary Gems for Sale!</h1>
                 <h1 className="mr-[14%] text-gray-500 text-[16px] font-semibold leading-8 mt-3">Unlocking Nature's Treasures: Embark on a Journey of Luxury with our Dazzling Gems, Available for Your Delight.</h1>
+                <div className="flex flex-row items-center justify-start mt-[2%]">
+                    <h1 className="text-gray-400 text-[32px] font-normal tracking-wide">Bidding Price :</h1><h1 className="text-gray-600 text-[32px] font-semibold ml-2">400$</h1>
+                </div>
+                <div className="border border-neutral-200 shadow w-[400px] h-[120px] mt-[3%]">
+                    <div className="flex flex-row items-center justify-center">
+                        <h1 className="text-gray-700 text-[16px] font-semibold mt-2">Bid Now</h1>
+                    </div>
+                    <div className="grid grid-cols-3">
+                       
+                    <input placeholder="($8 Minimum)" className='border-none outline-none bg-white p-2 m-3 text-gray-700 shadow col-span-2' />
+                    
+                <div className="cursor-pointer bg-green-600 mt-[9%] mx-[4%] border-neutral-50 rounded flex flex-row items-center justify-center h-[60%] "><h1 className="text-gray-100 text-[16px] font-semibold px-3 py-2 "> Place A Bid</h1></div>
+               
+          
+                    </div>
+                </div>
             </div>
                     
                 </div>
+                <div className='flex flex-col justify-center items-center mt-[5%]'>
+          <h1 className='text-gray-800 text-[32px] font-bold'>Related Items</h1>
+          
+        </div>
+        <div className="grid grid-cols-3 gap-5 mx-[10%] mt-[4%]">
+          {sample.map((x)=>(
+            <AuctionCard key={x}/>
+          ))}
+            <div className="cursor-pointer col-start-2   bg-green-600 mt-[9%] mx-[8%] border-neutral-50 rounded flex flex-row items-center justify-center h-[60%] "><h1 className="text-gray-100 text-[16px] font-semibold px-3 py-2 "> Explore More</h1></div>
+        </div>  
         </Layout>
     )
 }
