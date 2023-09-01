@@ -56,7 +56,7 @@ export default (props:PropTypes)=>{
                 <div className="mx-8 flex flex-row items-center justify-evenly">
                     <Link href={'/'}><h1 className="font-semibold text-gray-600 cursor-pointer">Home</h1></Link>
                     <Link href={'/about-us'}> <h1 className="font-semibold text-gray-600 cursor-pointer">About Us</h1></Link>
-                    <h1 className="font-semibold text-gray-600 cursor-pointer">How It Works</h1>
+                    <Link href={'/how-it-works'}><h1 className="font-semibold text-gray-600 cursor-pointer">How It Works</h1></Link>
                     <Link href={'/products'}><h1 className="font-semibold text-gray-600 cursor-pointer">Browse Product</h1></Link>
                     <h1 className="font-semibold text-gray-600 cursor-pointer">Create Product</h1>
                     <h1 className="font-semibold text-gray-600 cursor-pointer">Contact</h1>
