@@ -68,7 +68,7 @@ export default (props:PropTypes)=>{
                 <Link href="/profile"><button className="border rounded text-[16px] text-gray-600 p-3">My Account</button></Link>
             </div>
         </div>
-
+        {props.children}
       {!props.isProfile&&(
         <div className="flex flex-row items-center justify-between mx-[15%] mt-[4%]">
           <div className="flex flex-col items-center border shadow rounded hover:scale-105 transition-transform duration-300">
@@ -117,7 +117,7 @@ export default (props:PropTypes)=>{
           </div>
         </div>
       )}
-           {props.children}
+          
         <div className='bg-gray-800 h-[400px] mt-[8%]'>
             <div className='flex flex-col items-center'>
             <img src={"https://th.bing.com/th/id/R.f587908a16791fb5c8ff67f23b4abf47?rik=tQW%2bwcEZ6mmLhg&riu=http%3a%2f%2f3.bp.blogspot.com%2f-a8d5wx8ZDUc%2fT_1jkkGRfZI%2fAAAAAAAAAJ4%2f9EP6naleiFY%2fs1600%2fsample-logo2.png&ehk=EHvhwEZyZh%2f5rIZH6I0Zmr2pUXVWkh5fra0PqF%2fXLEA%3d&risl=&pid=ImgRaw&r=0"} width={'10%'} className="ml-2"/>

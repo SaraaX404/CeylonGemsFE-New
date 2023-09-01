@@ -11,7 +11,7 @@ export default () => {
   >("Profile");
 
   return (
-    <Layout isProfile>
+    <Layout>
       <div className="bg-gray-700 h-[400px] grid grid-cols-2">
         <div className="flex flex-col items-start mt-[12%] ml-[12%]">
           <h1 className="text-white text-[42px] font-bold">Profile</h1>
