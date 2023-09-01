@@ -1,3 +1,4 @@
+/* eslint react/no-unescaped-entities */
 import { Layout } from "@/components"
 import { BiChat } from "react-icons/bi";
 import { FaGavel, FaGlobe, FaLifeRing, FaShieldAlt, FaUserPlus } from 'react-icons/fa';
