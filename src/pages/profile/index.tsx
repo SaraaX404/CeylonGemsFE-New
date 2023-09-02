@@ -3,7 +3,11 @@ import { AiOutlineUser, AiFillShopping } from "react-icons/ai";
 import { BiSolidDashboard, BiLogOutCircle, BiLineChart } from "react-icons/bi";
 import { BsGem } from "react-icons/bs";
 import { useState } from "react";
-import { FaCheck, FaClock, FaShoppingBag } from "react-icons/fa";
+import { FaCheck, FaClock, FaFacebookMessenger, FaMoneyBill, FaShoppingBag } from "react-icons/fa";
+
+
+
+const rows = [1,2,3,4,5,6,7,8,9]
 
 export default () => {
   const [state, setState] = useState<
@@ -223,6 +227,67 @@ export default () => {
                 </div>
         )
         }
+
+        {state == "My Biddings"&&(
+          <div className="flex flex-col w-[63%] bg-white mt-[2%]">
+ 
+           <div className="flex flex-row items-center ">
+            <div className="flex flex-row border border-gray-200 bg-gray-200 shadow justify-center"><h1 className="text-[10px] text-gray-600 font-semibold w-[50px] ml-[20%] py-3">Image</h1></div>
+            <div className="flex flex-row border border-gray-200 bg-gray-200 shadow"><h1 className="text-[10px] text-gray-600 font-semibold w-[92px] ml-[28%] py-3">Bidding ID</h1></div>
+            <div className="flex flex-row border border-gray-200 bg-gray-200 shadow"><h1 className="text-[10px] text-gray-600 font-semibold w-[112px] ml-[28%] py-3">Start Price</h1></div>
+            <div className="flex flex-row border border-gray-200 bg-gray-200 shadow"><h1 className="text-[10px] text-gray-600 font-semibold w-[112px] ml-[28%] py-3">Bid Amount</h1></div>
+            <div className="flex flex-row border border-gray-200 bg-gray-200 shadow"><h1 className="text-[10px] text-gray-600 font-semibold w-[112px] ml-[28%] py-3">Highest Bid</h1></div>
+            <div className="flex flex-row border border-gray-200 bg-gray-200 shadow"><h1 className="text-[10px] text-gray-600 font-semibold w-[102px] ml-[32%] py-3">Status</h1></div>
+            <div className="flex flex-row border border-gray-200 bg-gray-200 shadow"><h1 className="text-[10px] text-gray-600 font-semibold w-[86px] ml-[28%] py-3">Action</h1></div>
+          </div>
+          {rows.map((x)=>(
+ <div className="flex flex-row items-center " key={1}>
+ <div className="flex flex-row border border-gray-200 shadow justify-center w-[51.3px]">
+   <div className=" border border-neutral-50 rounded w-[40px] h-[40px] p-[5px]">
+   <img
+    style={{ borderRadius: '10%' }}
+src="https://th.bing.com/th/id/OIP.qJBTfJXGlUYjVewGb9rbpgHaHa?pid=ImgDet&rs=1"
+
+
+/>
+   </div>
+
+</div>
+   <div className="flex flex-row border border-gray-200 shadow"><h1 className="text-[12px] text-gray-600 font-semibold w-[92px] ml-[35%] py-3">{x}</h1></div>
+   <div className="flex flex-row border border-gray-200 shadow"><h1 className="text-[12px] text-gray-600 font-semibold w-[112px] ml-[25%] py-3">1000K (LKR)</h1></div>
+   <div className="flex flex-row border border-gray-200 shadow"><h1 className="text-[12px] text-gray-600 font-semibold w-[112px] ml-[25%] py-3">1850K (LKR)</h1></div>
+   <div className="flex flex-row border border-gray-200 shadow"><h1 className="text-[12px] text-gray-600 font-semibold w-[112px] ml-[25%] py-3">1900K (LKR)</h1></div>
+   <div className="flex flex-row border border-gray-200 shadow justify-center items-center">
+  <h1 className="text-[12px] font-normal w-[102px] py-3" style={{ color: x % 2 === 0 ? "red" : "green",marginLeft:x%2==0?'27%':'25%' }}>
+    {x % 2 === 0 ? "Rejected" : "Approved"}
+  </h1>
+</div>
+   <div className="flex flex-row border border-gray-200 shadow cursor-pointer">
+    
+    {x%2===0?(
+      <div className="flex flex-col items-center w-[86px] ml-[10%] py-2">
+      <FaMoneyBill size={10} className="text-green-600"/>
+      <h1 className="text-[10px] text-gray-600 font-semibold  ">Re Bid</h1>
+        </div>
+    ):(
+      <div className="flex flex-col items-center w-[86px] ml-[10%] py-2">
+      <FaFacebookMessenger size={10} className="text-blue-600"/>
+      <h1 className="text-[10px] text-gray-600 font-semibold  ">Chat</h1>
+        </div>
+    )}
+    </div>
+ </div>
+          ))}
+          <div className="flex flex-row justify-center items-center mt-[3%]">
+                    <div className="border shadow rounded hover:bg-green-500 m-2 w-15"><h1 className="text-gray-700 p-2 font-semibold cursor-pointer hover:text-gray-100">PREV</h1></div>
+                    <div className="border shadow  hover:bg-green-500 m-2 rounded-full"><h1 className="text-gray-700 p-2 px-4 font-semibold cursor-pointer hover:text-gray-100">1</h1></div>
+                    <div className="border shadow  hover:bg-green-500 m-2 rounded-full"><h1 className="text-gray-700 p-2 px-4 font-semibold cursor-pointer hover:text-gray-100">2</h1></div>
+                    <div className="border shadow  hover:bg-green-500 m-2 rounded-full"><h1 className="text-gray-700 p-2 px-4 font-semibold cursor-pointer hover:text-gray-100">3</h1></div>
+                    <div className="border shadow rounded hover:bg-green-500 m-2 w-15"><h1 className="text-gray-700 p-2 font-semibold cursor-pointer hover:text-gray-100">NEXT</h1></div>
+                </div>
+          </div>
+         
+        )}
        
       </div>
     </Layout>
