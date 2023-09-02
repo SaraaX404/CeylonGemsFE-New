@@ -28,7 +28,7 @@ export default () => {
           </h1>
         </div>
       </div>
-      <div className="flex flex-row justify-start mx-[10%] mt-[5%]">
+      <div className="flex flex-row justify-start mx-[5%] mt-[5%]">
         <div className="flex flex-col w-[25%]  h-[500px] m-3">
           {state != "Profile" && (
             <div
