@@ -1,4 +1,4 @@
-import { Layout } from "@/components";
+import { AuctionCard, Layout } from "@/components";
 import { AiOutlineUser, AiFillShopping } from "react-icons/ai";
 import { BiSolidDashboard, BiLogOutCircle, BiLineChart } from "react-icons/bi";
 import { BsGem } from "react-icons/bs";
@@ -323,37 +323,37 @@ export default () => {
           <div className="grid grid-cols-1 w-[64%] bg-white mt-[2%]">
             <div className="grid grid-cols-7 ">
               <div className="flex flex-row border border-gray-200 bg-gray-200 shadow justify-center">
-                <h1 className="text-[10px] text-gray-600 font-semibold w-[50px] ml-[20%] py-3">
+                <h1 className="text-[12px] text-gray-600 font-semibold w-[50px] ml-[20%] py-3">
                   Image
                 </h1>
               </div>
               <div className="flex flex-row border border-gray-200 bg-gray-200 shadow justify-center">
-                <h1 className="text-[10px] text-gray-600 font-semibold  py-3">
+                <h1 className="text-[12px] text-gray-600 font-semibold  py-3">
                   Bidding ID
                 </h1>
               </div>
               <div className="flex flex-row border border-gray-200 bg-gray-200 shadow justify-center">
-                <h1 className="text-[10px] text-gray-600 font-semibold py-3">
+                <h1 className="text-[12px] text-gray-600 font-semibold py-3">
                   Start Price
                 </h1>
               </div>
               <div className="flex flex-row border border-gray-200 bg-gray-200 shadow justify-center">
-                <h1 className="text-[10px] text-gray-600 font-semibold  py-3">
+                <h1 className="text-[12px] text-gray-600 font-semibold  py-3">
                   Bid Amount
                 </h1>
               </div>
               <div className="flex flex-row border border-gray-200 bg-gray-200 shadow justify-center">
-                <h1 className="text-[10px] text-gray-600 font-semibold py-3">
+                <h1 className="text-[12px] text-gray-600 font-semibold py-3">
                   Highest Bid
                 </h1>
               </div>
               <div className="flex flex-row border border-gray-200 bg-gray-200 shadow justify-center">
-                <h1 className="text-[10px] text-gray-600 font-semibold  py-3">
+                <h1 className="text-[12px] text-gray-600 font-semibold  py-3">
                   Status
                 </h1>
               </div>
               <div className="flex flex-row border border-gray-200 bg-gray-200 shadow justify-center">
-                <h1 className="text-[10px] text-gray-600 font-semibold  py-3">
+                <h1 className="text-[12px] text-gray-600 font-semibold  py-3">
                   Action
                 </h1>
               </div>
@@ -461,6 +461,44 @@ export default () => {
             </div>
           </div>
 
+        )}
+
+        {state == "My Stones"&&(
+          <div className="border border-neutral-50 rounded shadow w-[64%] bg-white mt-[2%] ">
+            <div className="grid grid-cols-2 gap-5 m-3">
+              <AuctionCard isProfile/>
+              <AuctionCard isProfile/>
+              <AuctionCard isProfile/>
+              <AuctionCard isProfile/>
+            </div>
+            <div className="flex flex-row justify-center items-center my-[3%]">
+              <div className="border shadow rounded hover:bg-green-500 m-2 w-15">
+                <h1 className="text-gray-700 p-2 font-semibold cursor-pointer hover:text-gray-100">
+                  PREV
+                </h1>
+              </div>
+              <div className="border shadow  hover:bg-green-500 m-2 rounded-full">
+                <h1 className="text-gray-700 p-2 px-4 font-semibold cursor-pointer hover:text-gray-100">
+                  1
+                </h1>
+              </div>
+              <div className="border shadow  hover:bg-green-500 m-2 rounded-full">
+                <h1 className="text-gray-700 p-2 px-4 font-semibold cursor-pointer hover:text-gray-100">
+                  2
+                </h1>
+              </div>
+              <div className="border shadow  hover:bg-green-500 m-2 rounded-full">
+                <h1 className="text-gray-700 p-2 px-4 font-semibold cursor-pointer hover:text-gray-100">
+                  3
+                </h1>
+              </div>
+              <div className="border shadow rounded hover:bg-green-500 m-2 w-15">
+                <h1 className="text-gray-700 p-2 font-semibold cursor-pointer hover:text-gray-100">
+                  NEXT
+                </h1>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </Layout>
