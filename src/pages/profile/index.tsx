@@ -10,6 +10,7 @@ import {
   FaMoneyBill,
   FaShoppingBag,
 } from "react-icons/fa";
+import Link from "next/link";
 
 const rows = [1, 2, 3, 4, 5, 6];
 
@@ -466,10 +467,19 @@ export default () => {
         {state == "My Stones"&&(
           <div className="border border-neutral-50 rounded shadow w-[64%] bg-white mt-[2%] ">
             <div className="grid grid-cols-2 gap-5 m-3">
+              <Link href={`/my-details/1`}>
               <AuctionCard isProfile/>
+              </Link>
+              <Link href={`/my-details/1`}>
               <AuctionCard isProfile/>
+              </Link>
+              <Link href={`/my-details/1`}>
               <AuctionCard isProfile/>
+              </Link>
+              <Link href={`/my-details/1`}>
               <AuctionCard isProfile/>
+              </Link>
+              
             </div>
             <div className="flex flex-row justify-center items-center my-[3%]">
               <div className="border shadow rounded hover:bg-green-500 m-2 w-15">
