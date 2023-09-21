@@ -5,6 +5,9 @@ import { BiCommentDetail } from "react-icons/bi"
 import {BsFacebook, BsTwitter, BsInstagram, BsSearch, BsFillSendCheckFill} from 'react-icons/bs'
 import { CiFaceSmile } from "react-icons/ci"
 import { SlPeople } from "react-icons/sl"
+import Logo from '../../public/rm_bg.png'
+import WhiteLogo from '../../public/white_logo.png'
+import Image from "next/image";
 type PropTypes = {
     children: React.ReactNode
     isProfile?: boolean 
@@ -51,10 +54,10 @@ export default (props:PropTypes)=>{
             )}
        
         <div className={`grid grid-cols-6 items-center`}>
-            
-            <img src={"https://th.bing.com/th/id/R.f587908a16791fb5c8ff67f23b4abf47?rik=tQW%2bwcEZ6mmLhg&riu=http%3a%2f%2f3.bp.blogspot.com%2f-a8d5wx8ZDUc%2fT_1jkkGRfZI%2fAAAAAAAAAJ4%2f9EP6naleiFY%2fs1600%2fsample-logo2.png&ehk=EHvhwEZyZh%2f5rIZH6I0Zmr2pUXVWkh5fra0PqF%2fXLEA%3d&risl=&pid=ImgRaw&r=0"} width={'50%'} className="ml-2"/>
+
+            <Image src={Logo} width={120} className="m-3" alt={"logo"}/>
             <div className="col-span-4">
-                <div className="mx-8 flex flex-row items-center justify-evenly">
+                <div className="mx-7 flex flex-row items-center justify-evenly">
                     <Link href={'/'}><h1 className="font-semibold text-gray-600 cursor-pointer">Home</h1></Link>
                     <Link href={'/about-us'}> <h1 className="font-semibold text-gray-600 cursor-pointer">About Us</h1></Link>
                     <Link href={'/how-it-works'}><h1 className="font-semibold text-gray-600 cursor-pointer">How It Works</h1></Link>
@@ -118,9 +121,9 @@ export default (props:PropTypes)=>{
         </div>
       )}
           
-        <div className='bg-gray-800 h-[400px] mt-[8%]'>
+        <div className='bg-gray-800 h-[500px] mt-[8%]'>
             <div className='flex flex-col items-center'>
-            <img src={"https://th.bing.com/th/id/R.f587908a16791fb5c8ff67f23b4abf47?rik=tQW%2bwcEZ6mmLhg&riu=http%3a%2f%2f3.bp.blogspot.com%2f-a8d5wx8ZDUc%2fT_1jkkGRfZI%2fAAAAAAAAAJ4%2f9EP6naleiFY%2fs1600%2fsample-logo2.png&ehk=EHvhwEZyZh%2f5rIZH6I0Zmr2pUXVWkh5fra0PqF%2fXLEA%3d&risl=&pid=ImgRaw&r=0"} width={'10%'} className="ml-2"/>
+                <Image src={WhiteLogo} width={200} className="m-3" alt={"logo"}/>
             <h1 className='text-gray-100 text-[16px] font-semibold mx-[30%] text-center leading-8'>Explore the world of Ceylon Gems, where beauty meets rarity. Our curated collection of exquisite gemstones showcases the vibrant hues and unmatched quality that Ceylon is renowned for. From sapphires that echo the ocean's depths to rubies that capture the fire of passion, our gems are a testament to nature's artistry. Join us in celebrating the allure of Ceylon's treasures and embark on a journey of timeless elegance.</h1>
             
             <div className="flex flex-row items-center border border-gray-100 rounded-sm shadow mt-[2%]">
