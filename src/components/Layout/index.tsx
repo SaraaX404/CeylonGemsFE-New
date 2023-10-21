@@ -5,8 +5,8 @@ import { BiCommentDetail } from "react-icons/bi"
 import {BsFacebook, BsTwitter, BsInstagram, BsSearch, BsFillSendCheckFill} from 'react-icons/bs'
 import { CiFaceSmile } from "react-icons/ci"
 import { SlPeople } from "react-icons/sl"
-import Logo from '../../public/rm_bg.png'
-import WhiteLogo from '../../public/white_logo.png'
+import Logo from '../../public/White.svg'
+import WhiteLogo from '../../public/Black.svg'
 import Image from "next/image";
 type PropTypes = {
     children: React.ReactNode
@@ -121,7 +121,7 @@ export default (props:PropTypes)=>{
         </div>
       )}
           
-        <div className='bg-gray-800 h-[500px] mt-[8%]'>
+        <div className='bg-gray-800 h-[550px] mt-[8%]'>
             <div className='flex flex-col items-center'>
                 <Image src={WhiteLogo} width={200} className="m-3" alt={"logo"}/>
             <h1 className='text-gray-100 text-[16px] font-semibold mx-[30%] text-center leading-8'>Explore the world of Ceylon Gems, where beauty meets rarity. Our curated collection of exquisite gemstones showcases the vibrant hues and unmatched quality that Ceylon is renowned for. From sapphires that echo the ocean's depths to rubies that capture the fire of passion, our gems are a testament to nature's artistry. Join us in celebrating the allure of Ceylon's treasures and embark on a journey of timeless elegance.</h1>

@@ -1,6 +1,8 @@
 import { Layout } from "@/components"
 import { BiChat } from "react-icons/bi";
 import { FaGavel, FaGlobe, FaLifeRing, FaShieldAlt, FaUserPlus } from 'react-icons/fa';
+import Image from 'next/image'
+import WelcomeImage from '../../public/welcome.svg'
 
 export default ()=>{
     return(
@@ -12,7 +14,9 @@ export default ()=>{
                 </div>
                 </div>
                 <div className="mt-[5%] h-[400px] grid grid-cols-2">
-                    <div></div>
+                    <div className="ml-[10%]">
+                        <Image src={WelcomeImage} alt="Welcome" width={450} height={450}/>
+                    </div>
                     <div className="flex flex-col items-start justify-start mr-[3%]">
                         <h1 className="text-gray-700 text-[32px] font-semibold">Welcome to Ceylon Gems: Your Gateway to Global Gem Trade!</h1>
                         <h1 className="text-gray-600 text-[16px] font-normal mt-[3%] leading-8 text-justify">Ceylon Gems is your dedicated platform, connecting local gem sellers with discerning foreign gem buyers. We've crafted a seamless marketplace that benefits both parties, providing an excellent opportunity for local sellers to showcase their treasures to a worldwide audience and for international buyers to access an array of exquisite gemstones.</h1>

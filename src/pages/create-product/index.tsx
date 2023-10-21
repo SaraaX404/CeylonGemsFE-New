@@ -9,7 +9,7 @@ export default ()=>{
     const [images, setImages] = useState<string[]>([])
 
     const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files[0];
+        const file = e.target.files&&e.target.files[0];
         
         if (file) {
           const imageUrl = URL.createObjectURL(file);

@@ -37,7 +37,7 @@ export default ()=>{
                        </Link>
                    </div>
                </div>
-               <div ><img className={'border rounded-xl'} src={'https://th.bing.com/th/id/OIP.pGYhDY7tgh0oa3r-qrxbcAHaFj?pid=ImgDet&rs=1'}/></div>
+               <div ><img className={'border rounded-xl'} src={'https://i.postimg.cc/C1T09P7R/Login-Banner.jpg'}/></div>
            </div>
        </Layout>
     )

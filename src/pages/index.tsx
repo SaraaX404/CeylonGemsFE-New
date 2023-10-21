@@ -10,7 +10,7 @@ const sample = [1,2,3,4,5,6]
 export default function Home() {
   return (
       <Layout>
-          <div className=" bg-cover bg-center min-h-screen" style={{backgroundImage: 'url("http://notandas.com/resources/images/diamonds/banner-img.jpg")'}}>
+          <div className=" bg-cover bg-center min-h-screen bg-gray-800" style={{backgroundImage: 'url("https://i.postimg.cc/XYx8qC97/Main-Banner.png")'}}>
         <div className="flex flex-col items-center justify-center mx-[20%] " >
         <h1 className="text-[24px] font-semibold text-white mt-[15%]">Welcome to Ceylon Gems</h1>
             <h1 className="font-bold text-[48px] text-white text-center mt-[3%]">Explore, Bid, Win - Your Gateway to Extraordinary Gemstones</h1>

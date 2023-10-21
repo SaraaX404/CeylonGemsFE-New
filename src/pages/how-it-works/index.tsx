@@ -2,6 +2,11 @@
 import { Layout } from "@/components"
 import { BiChat } from "react-icons/bi";
 import { FaGavel, FaGlobe, FaLifeRing, FaShieldAlt, FaUserPlus } from 'react-icons/fa';
+import Image from "next/image";
+import RegisterImage from '../../public/register.svg'
+import BidImage from '../../public/bid.svg'
+import SelectImage from '../../public/select.svg'
+import WinImage from '../../public/win.svg'
 
 export default ()=>{
     return(
@@ -25,9 +30,14 @@ export default ()=>{
 </div>
 
             </div>  
+            <div className="ml-[20%]">
+                <Image src={RegisterImage} alt="Register" width={400} height={400}/>
+            </div>
         </div>
         <div className="grid grid-cols-2 gap-6 mt-[5%] mx-[10%]">
-            <div></div>
+            <div className="mt-[20%]">
+            <Image src={BidImage} alt="Bid" width={400} height={400}/>
+            </div>
             <div className="flex flex-col items-start justify-start">
                 <h1 className="text-green-500 text-[38px] font-bold">02.</h1>
                 <h1 className="text-gray-800 text-[28px] font-bold">Add Your Stones for bidding</h1>
@@ -59,10 +69,15 @@ export default ()=>{
 
 
             </div>  
+            <div className="ml-[20%] mt-[10%]">
+                <Image src={SelectImage} alt="Select" width={500} height={500}/>
+            </div>
         </div>
 
         <div className="grid grid-cols-2 gap-6 mt-[5%] mx-[10%]">
-            <div></div>
+            <div>
+            <Image src={WinImage} alt="Win" width={500} height={500}/>
+            </div>
             <div className="flex flex-col items-start justify-start">
                 <h1 className="text-green-500 text-[38px] font-bold">04.</h1>
                 <h1 className="text-gray-800 text-[28px] font-bold">Bid and Win</h1>
