@@ -8,6 +8,7 @@ import { SlPeople } from "react-icons/sl"
 import Logo from '../../public/White.svg'
 import WhiteLogo from '../../public/Black.svg'
 import Image from "next/image";
+import { useUserContext } from "@/context"
 type PropTypes = {
     children: React.ReactNode
     isProfile?: boolean 
@@ -18,7 +19,7 @@ export default (props:PropTypes)=>{
 
     const [showContactBar, setShowContactBar] = useState(false);
 
-
+    const UserCTX = useUserContext()
     useEffect(() => {
         const handleScroll = () => {
           const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -61,15 +62,26 @@ export default (props:PropTypes)=>{
                     <Link href={'/'}><h1 className="font-semibold text-gray-600 cursor-pointer">Home</h1></Link>
                     <Link href={'/about-us'}> <h1 className="font-semibold text-gray-600 cursor-pointer">About Us</h1></Link>
                     <Link href={'/how-it-works'}><h1 className="font-semibold text-gray-600 cursor-pointer">How It Works</h1></Link>
-                    <Link href={'/products'}><h1 className="font-semibold text-gray-600 cursor-pointer">Browse Product</h1></Link>
-                    <Link href={'/create-product'}><h1 className="font-semibold text-gray-600 cursor-pointer">Create Product</h1></Link>
+                    {UserCTX.user&&(
+                      <Link href={'/products'}><h1 className="font-semibold text-gray-600 cursor-pointer">Browse Product</h1></Link>
+                    )}
+                    {UserCTX.user&&(
+                      <Link href={'/create-product'}><h1 className="font-semibold text-gray-600 cursor-pointer">Create Product</h1></Link>
+                    )}
                     <h1 className="font-semibold text-gray-600 cursor-pointer">Contact</h1>
                 </div>
             </div>
+            {UserCTX.user?(
+               <div className="flex flex-row items-center justify-evenly">
+               <button><BsSearch/></button>
+               <Link href="/profile"><button className="border rounded text-[16px] text-gray-600 p-3">My Account</button></Link>
+           </div>
+            ):(
             <div className="flex flex-row items-center justify-evenly">
-                <button><BsSearch/></button>
-                <Link href="/profile"><button className="border rounded text-[16px] text-gray-600 p-3">My Account</button></Link>
+                <Link href="/login"><button className="border rounded text-[16px] text-gray-600 p-3">Login</button></Link>
             </div>
+            )}
+            
         </div>
         {props.children}
       {!props.isProfile&&(

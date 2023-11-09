@@ -4,12 +4,14 @@ import {CiFaceSmile} from 'react-icons/ci'
 import {BiCommentDetail} from 'react-icons/bi'
 import { Layout, AuctionCard } from '@/components'
 import { BsFillSendCheckFill } from 'react-icons/bs'
+import Protected from '@/components/Protected'
 
 const sample = [1,2,3,4,5,6]
 
 export default function Home() {
   return (
-      <Layout>
+      <Protected>
+ <Layout>
           <div className=" bg-cover bg-center min-h-screen bg-gray-800" style={{backgroundImage: 'url("https://i.postimg.cc/XYx8qC97/Main-Banner.png")'}}>
         <div className="flex flex-col items-center justify-center mx-[20%] " >
         <h1 className="text-[24px] font-semibold text-white mt-[15%]">Welcome to Ceylon Gems</h1>
@@ -34,5 +36,7 @@ export default function Home() {
         </div>
      
       </Layout>
+      </Protected>
+     
   )
 }

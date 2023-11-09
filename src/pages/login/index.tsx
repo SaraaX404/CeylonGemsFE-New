@@ -26,7 +26,7 @@ export default ()=>{
          const res = await loginMutation.mutateAsync(data)
          if(res){
           toast.success('Welcome Back')
-          router.push('/')
+          window.location.href = '/'
          }
       }
 
