@@ -1,11 +1,39 @@
 import {Layout} from "@/components";
+import { useUserContext } from "@/context";
+import { LoginRequest } from "@/models";
+import { login } from "@/services/AuthService";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
+import { toast } from "react-toastify";
 
 export default ()=>{
+
+    const router = useRouter()
+    const UserCTX = useUserContext()
+
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+      } = useForm<LoginRequest>();
+
+      const loginMutation = useMutation<boolean, Error, LoginRequest, unknown>(login);
+
+      const submit = async(data:LoginRequest) =>{
+         const res = await loginMutation.mutateAsync(data)
+         if(res){
+          toast.success('Welcome Back')
+          router.push('/')
+         }
+      }
+
     return(
        <Layout isProfile={true}>
            <div className={'grid grid-cols-2 gap-2'}>
-               <div className={'flex flex-col'}>
+               <form className={'flex flex-col'} onSubmit={handleSubmit(submit)}>
                    <h1 className={'text-gray-600 mx-10 text-xl font-semibold'}>Welcome Back</h1>
                    <div className="flex flex-col gap-1 col-span-2 mx-10 mt-10">
                        <h1 className="text-gray-800 text-[16px] font-semibold ">
@@ -15,6 +43,9 @@ export default ()=>{
                            <input
                                placeholder="someone@example.com"
                                className="w-[100%] px-2 py-3  focus:outline-blue-600 focus:ring-1 focus:ring-green-500"
+                               {...register("username", {
+                                required: "Username must be required",
+                              })}
                            />
                        </div>
                    </div>
@@ -26,6 +57,9 @@ export default ()=>{
                            <input
                                type={'password'}
                                className="w-[100%] px-2 py-3  focus:outline-blue-500 focus:ring-1 focus:ring-green-500"
+                               {...register("password", {
+                                required: "Password must be required",
+                              })}
                            />
                        </div>
                    </div>
@@ -36,7 +70,7 @@ export default ()=>{
                            Register
                        </Link>
                    </div>
-               </div>
+               </form>
                <div ><img className={'border rounded-xl'} src={'https://i.postimg.cc/C1T09P7R/Login-Banner.jpg'}/></div>
            </div>
        </Layout>

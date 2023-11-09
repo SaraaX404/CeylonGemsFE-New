@@ -4,7 +4,8 @@ import Link from "next/link";
 export default ()=>{
     return(
         <Layout isProfile={true}>
-            <div className={'mx-[20%]'}>
+            <div style={{backgroundImage: 'url("https://i.postimg.cc/B6WFnrRs/Register-Banner.png")'}}>
+            <div className={'mx-[20%]'} >
                 <div className={'flex flex-row items-center justify-start'}>
 
                         <label htmlFor="doc" className="flex m-[5%] items-center p-4 rounded-full border border-gray-300 border-dashed bg-gray-50 cursor-pointer h-[120px] w-[120px]" style={{ backgroundImage: 'url("https://th.bing.com/th/id/OIP.GlXqxcR9EmviN5kuwaUsMQHaIB?pid=ImgDet&rs=1")',backgroundSize: 'cover', // This ensures the image covers the entire div
@@ -137,6 +138,8 @@ export default ()=>{
                     </Link>
                 </div>
             </div>
+            </div>
+           
         </Layout>
     )
 }
