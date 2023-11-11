@@ -9,6 +9,7 @@ import Logo from '../../public/White.svg'
 import WhiteLogo from '../../public/Black.svg'
 import Image from "next/image";
 import { useUserContext } from "@/context"
+import ChatBar from '@/components/SlideMenu'
 type PropTypes = {
     children: React.ReactNode
     isProfile?: boolean 
@@ -69,6 +70,7 @@ export default (props:PropTypes)=>{
                       <Link href={'/create-product'}><h1 className="font-semibold text-gray-600 cursor-pointer">Create Product</h1></Link>
                     )}
                     <h1 className="font-semibold text-gray-600 cursor-pointer">Contact</h1>
+                    <ChatBar/>
                 </div>
             </div>
             {UserCTX.user?(
