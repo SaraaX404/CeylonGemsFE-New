@@ -10,8 +10,6 @@ import { toast } from "react-toastify";
 
 export default ()=>{
 
-    const router = useRouter()
-    const UserCTX = useUserContext()
 
     const {
         register,

@@ -1,7 +1,8 @@
 
 export type User = {
     username:string,
-    email:string
+    email:string,
+    kyc:boolean,
 }
 
 export type ContextType = {

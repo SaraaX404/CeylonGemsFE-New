@@ -1,4 +1,4 @@
-import { AuctionCard, Layout } from "@/components";
+import { AuctionCard, Layout, LineChart } from "@/components";
 import { AiOutlineUser, AiFillShopping } from "react-icons/ai";
 import { BiSolidDashboard, BiLogOutCircle, BiLineChart } from "react-icons/bi";
 import { BsGem } from "react-icons/bs";
@@ -317,6 +317,7 @@ export default () => {
                 </div>
               </div>
             </div>
+            <LineChart/>
           </div>
         )}
 

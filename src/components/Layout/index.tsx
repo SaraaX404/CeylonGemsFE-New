@@ -10,6 +10,7 @@ import WhiteLogo from '../../public/Black.svg'
 import Image from "next/image";
 import { useUserContext } from "@/context"
 import ChatBar from '@/components/SlideMenu'
+import KycAlert from "../KycAlert"
 type PropTypes = {
     children: React.ReactNode
     isProfile?: boolean 
@@ -39,7 +40,8 @@ export default (props:PropTypes)=>{
     return(
         <div className="flex flex-col bg-gray-100">
             {showContactBar&&(
- <div className="flex flex-row justify-between items-center bg-slate-100 h-[120%]">
+  <div className="flex flex-col">
+    <div className="flex flex-row justify-between items-center bg-slate-100 h-[120%]">
  <div className="flex flex-row items-center justify-evenly w-[15%]">
      <h1 className="text-[16px] font-semibold text-gray-700">Follow Us</h1>
      <BsFacebook />
@@ -52,7 +54,16 @@ export default (props:PropTypes)=>{
      <h1 className="text-[16px] font-normal text-gray-500"> Language</h1>
      <h1 className="text-[16px] font-normal text-gray-500"> Currency</h1>
  </div>
+
 </div>
+{
+  !UserCTX.user?.kyc&&(
+    <KycAlert/>
+  )
+}
+
+  </div>
+ 
             )}
        
         <div className={`grid grid-cols-6 items-center`}>

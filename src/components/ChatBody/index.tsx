@@ -6,7 +6,7 @@ export default ()=>{
     return (
         <div className='flex flex-row'>
         <div className='flex flex-col items-start w-[25%]'>
-            <Input placeholder='search' className='mx-3 my-3' />
+            <Input placeholder='search' className='mx-3 my-3 px-3' />
             <Item name='Kasun Kavinda'/>
             <Item name='Nimesh Kavinda'/>
             <Item name='Nimalsha Madushan'/>
