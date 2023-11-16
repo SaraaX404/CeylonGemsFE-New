@@ -22,7 +22,8 @@ export const checkUser = async():Promise<User> =>{
         if(res.data._id){
             return{
                 username:res.data.name,
-                email:res.data.email
+                email:res.data.email,
+                kyc:res.data.kyc.verified ? 'VERIFIED':res.data.kyc.data.length>2 ? 'INREVIEW' : 'UNVERIFIED'
             }
         }else{
            throw new Error('Unauthorized')
@@ -31,4 +32,32 @@ export const checkUser = async():Promise<User> =>{
     }catch(e:any){
         throw new Error(e.message)
     }
+}
+
+export const kycVerify = async(data:File[]):Promise<boolean> =>{
+
+    let images: string[] = [];
+
+  try {
+    for (const element of data) {
+      let formData = new FormData();
+      formData.append("file", element);
+      let fileRes = await API.post("/photos", formData);
+      if (fileRes.data) {
+        images.push(fileRes.data._id);
+      }
+    }
+
+    
+
+    const res = await API.put("/users/update", {data:images});
+    if (res.data) {
+      return true;
+    } else {
+      throw new Error("Cannot upload the images");
+    }
+  } catch (error) {
+    throw error;
+  }
+
 }

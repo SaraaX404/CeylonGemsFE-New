@@ -8,7 +8,7 @@ export default ()=>{
             <div className={'mx-[20%]'} >
                 <div className={'flex flex-row items-center justify-start'}>
 
-                        <label htmlFor="doc" className="flex m-[5%] items-center p-4 rounded-full border border-gray-300 border-dashed bg-gray-50 cursor-pointer h-[120px] w-[120px]" style={{ backgroundImage: 'url("https://th.bing.com/th/id/OIP.GlXqxcR9EmviN5kuwaUsMQHaIB?pid=ImgDet&rs=1")',backgroundSize: 'cover', // This ensures the image covers the entire div
+                        <label htmlFor="doc" className="flex m-[5%] items-center p-4 rounded-full border border-gray-300 border-dashed bg-gray-50 cursor-pointer h-[120px] w-[120px]" style={{ backgroundImage: 'url("https://dummyimage.com/300x300/ffffff/000000")',backgroundSize: 'cover', // This ensures the image covers the entire div
                             backgroundPosition: 'center' }}>
 
 

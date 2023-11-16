@@ -10,12 +10,16 @@ type PropTypes = {
 
 export default (props:PropTypes)=>{
 
+
+
     const UserCTX = useUserContext()
 
     const { data,error } = useQuery<User, Error>(
-        "campaigns",
+        "user",
         () => checkUser()
       );
+
+      console.log(data)
 
     useEffect(()=>{
         if(data){

@@ -25,7 +25,6 @@ export default function Home() {
     }
   }, [data]);
   return (
-    <Protected>
       <Layout>
         <div
           className=" bg-cover bg-center min-h-screen bg-gray-800"
@@ -75,6 +74,5 @@ export default function Home() {
         ))}
         </div>
       </Layout>
-    </Protected>
   );
 }

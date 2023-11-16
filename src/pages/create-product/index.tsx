@@ -10,6 +10,11 @@ import {toast} from 'react-toastify'
 export default () => {
   const [endEnabled, setEnabled] = useState<boolean>(true);
   const [fixed, setFixed] = useState<boolean>(false);
+  const [files, setFiles] = useState<File[]>([])
+  type mutationKey = {
+    postData:CreateProductRequest,
+    files:File[]
+  }
 
   type ProductInputs = {
     name: string;
@@ -26,7 +31,9 @@ export default () => {
   } = useForm<ProductInputs>();
 
   const dummy =
-    "https://fernandostexmex.com/wp-content/uploads/2014/12/dummy_image_06-500x300.png";
+    "https://dummyimage.com/300x300/ffffff/000000";
+
+  const coverDummy = 'https://dummyimage.com/300x600/ffffff/000000'
 
   const [images, setImages] = useState<string[]>([]);
 
@@ -34,13 +41,14 @@ export default () => {
     const file = e.target.files && e.target.files[0];
 
     if (file) {
+      setFiles([...files, file])
       const imageUrl = URL.createObjectURL(file);
       const imageList = [...images, imageUrl];
       setImages(imageList);
     }
   };
 
-  const postMutation = useMutation<boolean, Error, CreateProductRequest, unknown>(CreateProduct);
+  const postMutation = useMutation<boolean, Error, mutationKey, unknown>(CreateProduct);
 
   const submit  = async (data:ProductInputs) =>{
 
@@ -53,7 +61,7 @@ export default () => {
       start_price:data.price
     }
 
-    const res = await postMutation.mutateAsync(postData)
+    const res = await postMutation.mutateAsync({postData, files})
 
     if(res){
       toast.success('Your post send to approvel')
@@ -124,7 +132,7 @@ export default () => {
               style={{
                 width: "300px", // Set the desired width here
                 height: "376px", // Set the desired height here
-                backgroundImage: `url(${images[3] ? images[3] : dummy})`,
+                backgroundImage: `url(${images[3] ? images[3] : coverDummy})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -194,7 +202,7 @@ export default () => {
               <Switch onChange={() => setFixed(!fixed)} />
             </div>
 
-            <button className="bg-gray-700 w-[40%] rounded-lg" type="submit">
+            <button className="bg-gray-700 w-[40%] h-[180%] rounded-lg" type="submit">
               <h1 className="text-white">Create</h1>
             </button>
           </div>

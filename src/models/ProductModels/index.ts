@@ -20,4 +20,6 @@ type Post = {
 
 export type GetAllPostsResponse = Post 
 
-export type CreateProductRequest = Omit<Omit<Omit<Post,'seller_id'>,'status'>,'_id'>
+export type CreateProductRequest = Omit<Omit<Omit<Omit<Post,'seller_id'>,'status'>,'_id'>,'photos'> & {
+  photos:string[]
+}

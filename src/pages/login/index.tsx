@@ -21,11 +21,17 @@ export default ()=>{
       const loginMutation = useMutation<boolean, Error, LoginRequest, unknown>(login);
 
       const submit = async(data:LoginRequest) =>{
-         const res = await loginMutation.mutateAsync(data)
-         if(res){
-          toast.success('Welcome Back')
-          window.location.href = '/'
+         
+         try{
+            const res = await loginMutation.mutateAsync(data)
+            if(res){
+                toast.success('Welcome Back')
+                window.location.href = '/'
+               }
+         }catch(error){
+            toast.error('Invalid Credentials')
          }
+         
       }
 
     return(

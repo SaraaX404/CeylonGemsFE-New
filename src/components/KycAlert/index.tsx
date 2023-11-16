@@ -1,19 +1,25 @@
 import { Alert, Button } from "@mui/material";
 import Link from "next/link";
 
-export default () => {
+type PropTypes = {
+  message:string,
+  type:'error'|'info'
+}
+
+export default ({message, type}:PropTypes) => {
   return (
     <Alert
-      severity="error"
+      severity={type}
+     
       action={
-        <Link href={"/kyc"}>
+        type == 'error'&&<Link href={"/kyc"}>
           <Button color="inherit" size="small" className="mr-10">
             <h1 className="text-red-400 font-normal text-md">Verify Now</h1>
           </Button>
         </Link>
       }
     >
-      Verify your identity and start buisness
+      {message}
     </Alert>
   );
 };

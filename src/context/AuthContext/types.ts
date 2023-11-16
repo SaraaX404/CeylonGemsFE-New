@@ -2,7 +2,7 @@
 export type User = {
     username:string,
     email:string,
-    kyc:boolean,
+    kyc:'VERIFIED'|'INREVIEW'|'UNVERIFIED',
 }
 
 export type ContextType = {
