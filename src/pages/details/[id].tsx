@@ -68,7 +68,7 @@ export default () => {
         <div className="flex flex-row items-start ">
           <div className="flex flex-row items-center ml-[20%] ">
             <div className="grid grid-rows-3 gap-2">
-              {post?.photos?.slice(0, 2)?.map((x) => (
+              {post?.photos?.slice(0, 3)?.map((x) => (
                 <div
                   className="hover:scale-105 transition-transform duration-300"
                   style={{

@@ -1,4 +1,4 @@
-import { LoginRequest } from "@/models";
+import { GetUserDetailsResponse, LoginRequest } from "@/models";
 import API from "../API";
 import { User } from "@/context/AuthContext/types";
 
@@ -47,9 +47,6 @@ export const kycVerify = async(data:File[]):Promise<boolean> =>{
         images.push(fileRes.data._id);
       }
     }
-
-    
-
     const res = await API.put("/users/update", {data:images});
     if (res.data) {
       return true;
@@ -61,3 +58,17 @@ export const kycVerify = async(data:File[]):Promise<boolean> =>{
   }
 
 }
+
+export const GetProfile = async():Promise<GetUserDetailsResponse>=>{
+  try{
+    const res = await API.get('/users/me');
+    if(res.data){
+      return res.data
+    }else{
+    throw new Error('No user found')
+    }
+  }catch(e){
+    throw e
+  }
+}
+

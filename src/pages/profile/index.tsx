@@ -2,7 +2,7 @@ import { AuctionCard, Layout, LineChart } from "@/components";
 import { AiOutlineUser, AiFillShopping } from "react-icons/ai";
 import { BiSolidDashboard, BiLogOutCircle, BiLineChart } from "react-icons/bi";
 import { BsGem } from "react-icons/bs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaCheck,
   FaClock,
@@ -11,6 +11,9 @@ import {
   FaShoppingBag,
 } from "react-icons/fa";
 import Link from "next/link";
+import { GetUserDetailsResponse } from "@/models";
+import { useQuery } from "react-query";
+import { GetProfile } from "@/services/AuthService";
 
 const rows = [1, 2, 3, 4, 5, 6];
 
@@ -18,6 +21,17 @@ export default () => {
   const [state, setState] = useState<
     "Profile" | "Dashboard" | "My Biddings" | "My Stones"
   >("Profile");
+
+
+  const [profile, setProfile] = useState<GetUserDetailsResponse>({} as GetUserDetailsResponse)
+
+  const {data, error} = useQuery<GetUserDetailsResponse, Error>('Profile', ()=> GetProfile())
+
+  useEffect(()=>{
+    if(data){
+      setProfile(data)
+    }
+  },[data])
 
   return (
     <Layout>
@@ -140,11 +154,11 @@ export default () => {
               />
               <div className="flex flex-col justify-center">
                 <h1 className="text-gray-800 text-[30px] font-semibold">
-                  Sara Tancredi
+                 {profile.first_name} {profile.last_name}
                 </h1>
                 <div className="flex flex-row items-center">
                   <h1 className="text-gray-500 text-[22px] font-semibold">
-                    Sri Lanka
+                    {profile.country}
                   </h1>
                   <img
                     src="https://th.bing.com/th/id/OIP.bcp-2ZvzcfHtNmVGTY0__wHaHa?pid=ImgDet&rs=1"
@@ -162,6 +176,7 @@ export default () => {
                 <div className="flex flex-col rounded shadow border border-gray-200">
                   <input
                     placeholder="Your First Name"
+                    value={profile.first_name}
                     className="w-[100%] px-2 py-3  focus:outline-green-500 focus:ring-1 focus:ring-green-500"
                   />
                 </div>
@@ -173,6 +188,7 @@ export default () => {
                 <div className="flex flex-col rounded shadow border border-gray-200">
                   <input
                     placeholder="Your Last Name"
+                    value={profile.last_name}
                     className="w-[100%] px-2 py-3  focus:outline-green-500 focus:ring-1 focus:ring-green-500"
                   />
                 </div>
@@ -184,6 +200,7 @@ export default () => {
                 <div className="flex flex-col rounded shadow border border-gray-200">
                   <input
                     placeholder="0784455785"
+                    value={profile.mobile}
                     className="w-[100%] px-2 py-3  focus:outline-green-500 focus:ring-1 focus:ring-green-500"
                   />
                 </div>
@@ -195,6 +212,7 @@ export default () => {
                 <div className="flex flex-col rounded shadow border border-gray-200">
                   <input
                     placeholder="Your Email"
+                    value={profile.email}
                     className="w-[100%] px-2 py-3  focus:outline-green-500 focus:ring-1 focus:ring-green-500"
                   />
                 </div>
@@ -206,6 +224,7 @@ export default () => {
                 </h1>
                 <div className="flex flex-col rounded shadow border border-gray-200">
                   <input
+                  value={profile.address_01}
                     placeholder="No 01, Apartment 06"
                     className="w-[100%] px-2 py-3  focus:outline-green-500 focus:ring-1 focus:ring-green-500"
                   />
@@ -217,6 +236,7 @@ export default () => {
                 </h1>
                 <div className="flex flex-col rounded shadow border border-gray-200">
                   <input
+                  value={profile.address_02}
                     placeholder="albuquerque"
                     className="w-[100%] px-2 py-3  focus:outline-green-500 focus:ring-1 focus:ring-green-500"
                   />
@@ -228,6 +248,7 @@ export default () => {
                 </h1>
                 <div className="flex flex-col rounded shadow border border-gray-200">
                   <input
+                  value={profile.country}
                     placeholder="USA"
                     className="w-[100%] px-2 py-3  focus:outline-green-500 focus:ring-1 focus:ring-green-500"
                   />
@@ -240,6 +261,7 @@ export default () => {
                 <div className="flex flex-col rounded shadow border border-gray-200">
                   <input
                     placeholder="New York"
+                    value={profile.country}
                     className="w-[100%] px-2 py-3  focus:outline-green-500 focus:ring-1 focus:ring-green-500"
                   />
                 </div>
@@ -249,6 +271,7 @@ export default () => {
                 <div className="flex flex-col rounded shadow border border-gray-200">
                   <input
                     placeholder="New Mexico"
+                    value={profile.city}
                     className="w-[100%] px-2 py-3  focus:outline-green-500 focus:ring-1 focus:ring-green-500"
                   />
                 </div>
@@ -261,6 +284,7 @@ export default () => {
                 <div className="flex flex-col rounded shadow border border-gray-200">
                   <input
                     placeholder="70200"
+                    value={profile.zip_code}
                     className="w-[100%] px-2 py-3  focus:outline-green-500 focus:ring-1 focus:ring-green-500"
                   />
                 </div>
