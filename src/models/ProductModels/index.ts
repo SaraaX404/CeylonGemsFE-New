@@ -3,7 +3,7 @@ type Photo = {
     photo: string;
   }
   
-type Post = {
+export type Post = {
     _id: string;
     name: string;
     description: string;
@@ -15,6 +15,7 @@ type Post = {
       country: string;
     };
     fixed:boolean,
+    highestPrice:number,
     end_date:Date | null
 }
 

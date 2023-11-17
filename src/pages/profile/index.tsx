@@ -14,6 +14,9 @@ import Link from "next/link";
 import { GetUserDetailsResponse } from "@/models";
 import { useQuery } from "react-query";
 import { GetProfile } from "@/services/AuthService";
+import { GetBidsResponse } from "@/models/BidsModel";
+import { getBidsBySeller } from "@/services/BidsService";
+import { useUserContext } from "@/context";
 
 const rows = [1, 2, 3, 4, 5, 6];
 
@@ -22,16 +25,36 @@ export default () => {
     "Profile" | "Dashboard" | "My Biddings" | "My Stones"
   >("Profile");
 
+  const UserCTX = useUserContext();
+  const [profile, setProfile] = useState<GetUserDetailsResponse>(
+    {} as GetUserDetailsResponse
+  );
+  const [bids, setBids] = useState<GetBidsResponse[]>([]);
 
-  const [profile, setProfile] = useState<GetUserDetailsResponse>({} as GetUserDetailsResponse)
+  const { data, error } = useQuery<GetUserDetailsResponse, Error>(
+    "Profile",
+    () => GetProfile()
+  );
+  const { data: bidData, refetch } = useQuery<GetBidsResponse[], Error>(
+    "Bids",
+    () => getBidsBySeller(UserCTX.user?._id || " ")
+  );
 
-  const {data, error} = useQuery<GetUserDetailsResponse, Error>('Profile', ()=> GetProfile())
-
-  useEffect(()=>{
-    if(data){
-      setProfile(data)
+  useEffect(() => {
+    if (data) {
+      setProfile(data);
     }
-  },[data])
+  }, [data]);
+
+  useEffect(() => {
+    refetch();
+  }, [UserCTX.user?._id]);
+
+  useEffect(() => {
+    if (Array.isArray(bidData)) {
+      setBids(bidData);
+    }
+  }, [bidData]);
 
   return (
     <Layout>
@@ -154,7 +177,7 @@ export default () => {
               />
               <div className="flex flex-col justify-center">
                 <h1 className="text-gray-800 text-[30px] font-semibold">
-                 {profile.first_name} {profile.last_name}
+                  {profile.first_name} {profile.last_name}
                 </h1>
                 <div className="flex flex-row items-center">
                   <h1 className="text-gray-500 text-[22px] font-semibold">
@@ -224,7 +247,7 @@ export default () => {
                 </h1>
                 <div className="flex flex-col rounded shadow border border-gray-200">
                   <input
-                  value={profile.address_01}
+                    value={profile.address_01}
                     placeholder="No 01, Apartment 06"
                     className="w-[100%] px-2 py-3  focus:outline-green-500 focus:ring-1 focus:ring-green-500"
                   />
@@ -236,7 +259,7 @@ export default () => {
                 </h1>
                 <div className="flex flex-col rounded shadow border border-gray-200">
                   <input
-                  value={profile.address_02}
+                    value={profile.address_02}
                     placeholder="albuquerque"
                     className="w-[100%] px-2 py-3  focus:outline-green-500 focus:ring-1 focus:ring-green-500"
                   />
@@ -248,7 +271,7 @@ export default () => {
                 </h1>
                 <div className="flex flex-col rounded shadow border border-gray-200">
                   <input
-                  value={profile.country}
+                    value={profile.country}
                     placeholder="USA"
                     className="w-[100%] px-2 py-3  focus:outline-green-500 focus:ring-1 focus:ring-green-500"
                   />
@@ -341,19 +364,19 @@ export default () => {
                 </div>
               </div>
             </div>
-            <LineChart/>
+            <LineChart />
           </div>
         )}
 
         {state == "My Biddings" && (
           <div className="grid grid-cols-1 w-[64%] bg-white mt-[2%]">
-            <div className="grid grid-cols-7 ">
+            <div className="grid grid-cols-8 ">
               <div className="flex flex-row border border-gray-200 bg-gray-200 shadow justify-center">
                 <h1 className="text-[12px] text-gray-600 font-semibold w-[50px] ml-[20%] py-3">
                   Image
                 </h1>
               </div>
-              <div className="flex flex-row border border-gray-200 bg-gray-200 shadow justify-center">
+              <div className="flex flex-row border border-gray-200 bg-gray-200 shadow justify-center col-span-2">
                 <h1 className="text-[12px] text-gray-600 font-semibold  py-3">
                   Bidding ID
                 </h1>
@@ -384,8 +407,8 @@ export default () => {
                 </h1>
               </div>
             </div>
-            {rows.map((x) => (
-              <div className="grid grid-cols-7 hover:bg-gray-200">
+            {bids.map((y, x) => (
+              <div className="grid grid-cols-8 hover:bg-gray-200">
                 <div className="flex flex-row border border-gray-200  shadow  justify-center items-center">
                   <h1 className="text-[10px] text-gray-600 font-semibold w-[50px] py-1">
                     {" "}
@@ -399,24 +422,24 @@ export default () => {
                     </div>
                   </h1>
                 </div>
-                <div className="flex flex-row border border-gray-200  shadow justify-center items-center">
+                <div className="flex flex-row border border-gray-200  shadow justify-center items-center col-span-2">
                   <h1 className="text-[10px] text-gray-600 font-semibold  py-1">
-                    {x}
+                    {y?._id}
                   </h1>
                 </div>
                 <div className="flex flex-row border border-gray-200  shadow justify-center items-center">
                   <h1 className="text-[10px] text-gray-600 font-semibold py-1">
-                    1000K (LKR)
+                    {y?.price} (LKR)
                   </h1>
                 </div>
                 <div className="flex flex-row border border-gray-200 shadow justify-center items-center">
                   <h1 className="text-[10px] text-gray-600 font-semibold  py-1">
-                    1850K (LKR)
+                    {y?.postID?.start_price} (LKR)
                   </h1>
                 </div>
                 <div className="flex flex-row border border-gray-200  shadow justify-center items-center">
                   <h1 className="text-[10px] text-gray-600 font-semibold py-1">
-                    2200K (LKR)
+                    {y?.postID?.highestPrice} (LKR)
                   </h1>
                 </div>
                 <div className="flex flex-row border border-gray-200  shadow justify-center items-center">
@@ -425,25 +448,23 @@ export default () => {
                       <h1
                         className="text-[12px] font-normal w-[102px] py-3"
                         style={{
-                          color: x % 2 === 0 ? "red" : "green",
+                          color:
+                            y?.status === "REJECTED"
+                              ? "red"
+                              : y.status === "ACCEPTED"
+                              ? "green"
+                              : "blue",
                           marginLeft: x % 2 == 0 ? "27%" : "25%",
                         }}
                       >
-                        {x % 2 === 0 ? "Rejected" : "Approved"}
+                        {y?.status}
                       </h1>
                     </div>
                   </h1>
                 </div>
                 <div className="flex flex-row border border-gray-200 shadow justify-center items-center">
                   <div className="flex flex-row  cursor-pointer">
-                    {x % 2 === 0 ? (
-                      <div className="flex flex-col items-center w-[86px] py-2">
-                        <FaMoneyBill size={10} className="text-green-600" />
-                        <h1 className="text-[10px] text-gray-600 font-semibold  ">
-                          Re Bid
-                        </h1>
-                      </div>
-                    ) : (
+                    {y.status === "ACCEPTED" ? (
                       <div className="flex flex-col items-center w-[86px] py-2">
                         <FaFacebookMessenger
                           size={10}
@@ -452,6 +473,13 @@ export default () => {
                         <h1 className="text-[10px] text-gray-600 font-semibold  ">
                           Chat
                         </h1>{" "}
+                      </div>
+                    ) : (
+                      <div className="flex flex-col items-center w-[86px] py-2">
+                        <FaMoneyBill size={10} className="text-green-600" />
+                        <h1 className="text-[10px] text-gray-600 font-semibold  ">
+                          Re Bid
+                        </h1>
                       </div>
                     )}
                   </div>
@@ -486,25 +514,23 @@ export default () => {
               </div>
             </div>
           </div>
-
         )}
 
-        {state == "My Stones"&&(
+        {state == "My Stones" && (
           <div className="border border-neutral-50 rounded shadow w-[64%] bg-white mt-[2%] ">
             <div className="grid grid-cols-2 gap-5 m-3">
               <Link href={`/my-details/1`}>
-              <AuctionCard isProfile/>
+                <AuctionCard isProfile />
               </Link>
               <Link href={`/my-details/1`}>
-              <AuctionCard isProfile/>
+                <AuctionCard isProfile />
               </Link>
               <Link href={`/my-details/1`}>
-              <AuctionCard isProfile/>
+                <AuctionCard isProfile />
               </Link>
               <Link href={`/my-details/1`}>
-              <AuctionCard isProfile/>
+                <AuctionCard isProfile />
               </Link>
-              
             </div>
             <div className="flex flex-row justify-center items-center my-[3%]">
               <div className="border shadow rounded hover:bg-green-500 m-2 w-15">

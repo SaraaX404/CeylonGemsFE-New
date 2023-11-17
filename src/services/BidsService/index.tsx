@@ -1,4 +1,4 @@
-import {  CreateBidRequest } from "@/models/BidsModel";
+import {  CreateBidRequest, GetBidsResponse } from "@/models/BidsModel";
 import API from "../API";
 
 export const CreateBid = async (data:CreateBidRequest): Promise<boolean> => {
@@ -13,3 +13,17 @@ export const CreateBid = async (data:CreateBidRequest): Promise<boolean> => {
     }
     
 };
+
+export const getBidsBySeller = async (id:string):Promise<GetBidsResponse[]>=>{
+
+    console.log(id, 'id')
+
+    try{
+
+        const res = await API.get(`/bids/seller/${id}`)
+        return res.data
+
+    }catch(e){
+        throw e
+    }
+}

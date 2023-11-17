@@ -23,7 +23,8 @@ export const checkUser = async():Promise<User> =>{
             return{
                 username:res.data.name,
                 email:res.data.email,
-                kyc:res.data.kyc.verified ? 'VERIFIED':res.data.kyc.data.length>2 ? 'INREVIEW' : 'UNVERIFIED'
+                kyc:res.data.kyc.verified ? 'VERIFIED':res.data.kyc.data.length>2 ? 'INREVIEW' : 'UNVERIFIED',
+                _id:res.data._id
             }
         }else{
            throw new Error('Unauthorized')
