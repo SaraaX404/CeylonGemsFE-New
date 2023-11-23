@@ -58,7 +58,7 @@ export default () => {
       description:data.description,
       fixed:fixed,
       photos:[],
-      start_price:data.price
+      start_price:data.price,
     }
 
     const res = await postMutation.mutateAsync({postData, files})

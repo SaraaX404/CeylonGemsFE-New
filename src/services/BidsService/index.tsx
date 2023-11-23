@@ -14,13 +14,13 @@ export const CreateBid = async (data:CreateBidRequest): Promise<boolean> => {
     
 };
 
-export const getBidsBySeller = async (id:string):Promise<GetBidsResponse[]>=>{
+export const getBidsBySeller = async ():Promise<GetBidsResponse[]>=>{
 
-    console.log(id, 'id')
+
 
     try{
 
-        const res = await API.get(`/bids/seller/${id}`)
+        const res = await API.get(`/bids/buyer`)
         return res.data
 
     }catch(e){

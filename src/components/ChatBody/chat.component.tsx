@@ -19,7 +19,11 @@ interface ChatMessage {
   isUser: boolean;
 }
 
-const App: React.FC = () => {
+type Props = {
+  name?:string
+}
+
+const App = ({name}:Props) => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [typing, setTyping] = useState(false);
 
@@ -41,7 +45,7 @@ const App: React.FC = () => {
       <ChatContainer>
         <ConversationHeader>
           <Avatar src='https://th.bing.com/th/id/R.f8f17e935d16c6627dd37f5c784c3c9e?rik=%2fTOJbw4sTquGLg&pid=ImgRaw&r=0' name="Kasun Kavinda" />
-          <ConversationHeader.Content userName="Kasun Kavinda" info="Active" />
+          <ConversationHeader.Content userName={name?name:'Kasun Kavinda'} info="Active" />
           <ConversationHeader.Actions>
             <InfoButton />
           </ConversationHeader.Actions>

@@ -18,9 +18,14 @@ import { useUserContext } from "@/context";
 import ChatBar from "@/components/SlideMenu";
 import KycAlert from "../KycAlert";
 import Protected from "../Protected";
+import { Button } from "@mui/material";
 type PropTypes = {
   children: React.ReactNode;
   isProfile?: boolean;
+};
+
+const ChatButton = () => {
+  return <h1>Inbox</h1>;
 };
 
 export default (props: PropTypes) => {
@@ -122,7 +127,7 @@ export default (props: PropTypes) => {
               <h1 className="font-semibold text-gray-600 cursor-pointer">
                 Contact
               </h1>
-              <ChatBar />
+              <ChatBar ChatButton={ChatButton} />
             </div>
           </div>
           {UserCTX.user ? (

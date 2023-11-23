@@ -6,7 +6,7 @@ import API from "../API";
 
 export const GetPosts = async (): Promise<GetAllPostsResponse[]> => {
   try {
-    const res = await API.get("/posts");
+    const res = await API.get("/posts/approved");
     if (res.data) {
       return res.data;
     } else {
@@ -67,3 +67,17 @@ export const CreateProduct = async ({
     throw error;
   }
 };
+
+
+export const GetPostsSeller = async():Promise<GetAllPostsResponse[]>=>{
+  try {
+    const res = await API.get(`/posts/MyPosts`);
+    if (res.data) {
+      return res.data;
+    } else {
+      return []
+    }
+  } catch (error) {
+    throw error;
+  }
+}

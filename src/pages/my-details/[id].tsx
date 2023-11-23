@@ -10,20 +10,20 @@ import { useParams } from "next/navigation";
 const rows = [1, 2, 3];
 
 export default () => {
-  const { id } = useParams();
+  //const { id } = useParams();
 
   const [post, setPost] = useState<GetAllPostsResponse>(
     {} as GetAllPostsResponse
   );
-  const { data, error } = useQuery<GetAllPostsResponse, Error>("posts", () =>
-    GetPostsById(Array.isArray(id) ? "" : id)
-  );
+  // const { data, error } = useQuery<GetAllPostsResponse, Error>("posts", () =>
+  //   GetPostsById(Array.isArray(id) ? "" : id)
+  // );
 
-  useEffect(() => {
-    if (data) {
-      setPost(data);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     setPost(data);
+  //   }
+  // }, [data]);
 
   return (
     <Layout>

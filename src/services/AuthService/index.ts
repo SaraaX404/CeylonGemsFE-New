@@ -31,6 +31,7 @@ export const checkUser = async():Promise<User> =>{
         }
         
     }catch(e:any){
+      console.log(e)
         throw new Error(e.message)
     }
 }

@@ -11,11 +11,11 @@ export type Post = {
     photos: Photo[];
     start_price: number;
     seller_id: {
-      name: string;
+      first_name: string;
       country: string;
     };
     fixed:boolean,
-    highestPrice:number,
+    highestPrice?:number,
     end_date:Date | null
 }
 

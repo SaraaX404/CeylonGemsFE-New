@@ -1,8 +1,11 @@
+import { GetUserDetailsResponse } from ".."
 import { Post } from "../ProductModels"
+
+
 
 export type Bids = {
     status:'ACCEPTED' | 'REJECTED' | 'PENDING',
-    buyerId: string,
+    buyerId: GetUserDetailsResponse,
     postID: string,
     price: number
 }

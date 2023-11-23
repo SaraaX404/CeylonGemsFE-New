@@ -9,6 +9,7 @@ type PropTypes = {
 }
 
 export default (props:PropTypes) => {
+    console.log(props)
     return(<div className="flex flex-col justify-start shadow border rounded cursor-pointer">
         <div className=" overflow-hidden">
         <div

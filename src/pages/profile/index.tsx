@@ -17,6 +17,9 @@ import { GetProfile } from "@/services/AuthService";
 import { GetBidsResponse } from "@/models/BidsModel";
 import { getBidsBySeller } from "@/services/BidsService";
 import { useUserContext } from "@/context";
+import { GetAllPostsResponse } from "@/models/ProductModels";
+import { GetPostsSeller } from "@/services/ProductsService";
+import ChatBar from "../../components/SlideMenu";
 
 const rows = [1, 2, 3, 4, 5, 6];
 
@@ -37,9 +40,22 @@ export default () => {
   );
   const { data: bidData, refetch } = useQuery<GetBidsResponse[], Error>(
     "Bids",
-    () => getBidsBySeller(UserCTX.user?._id || " ")
+    () => getBidsBySeller()
   );
 
+  const ChatButton = () => {
+    return (
+      <div className="flex flex-col items-center w-[86px] py-2">
+        <FaFacebookMessenger size={10} className="text-blue-600" />{" "}
+        <h1 className="text-[10px] text-gray-600 font-semibold  ">Chat</h1>{" "}
+      </div>
+    );
+  };
+
+  const { data: postData } = useQuery<GetAllPostsResponse[], Error>(
+    "Posts",
+    () => GetPostsSeller()
+  );
   useEffect(() => {
     if (data) {
       setProfile(data);
@@ -465,15 +481,7 @@ export default () => {
                 <div className="flex flex-row border border-gray-200 shadow justify-center items-center">
                   <div className="flex flex-row  cursor-pointer">
                     {y.status === "ACCEPTED" ? (
-                      <div className="flex flex-col items-center w-[86px] py-2">
-                        <FaFacebookMessenger
-                          size={10}
-                          className="text-blue-600"
-                        />{" "}
-                        <h1 className="text-[10px] text-gray-600 font-semibold  ">
-                          Chat
-                        </h1>{" "}
-                      </div>
+                      <ChatBar ChatButton={ChatButton} name={y.postID.seller_id.first_name}/>
                     ) : (
                       <div className="flex flex-col items-center w-[86px] py-2">
                         <FaMoneyBill size={10} className="text-green-600" />
@@ -519,18 +527,17 @@ export default () => {
         {state == "My Stones" && (
           <div className="border border-neutral-50 rounded shadow w-[64%] bg-white mt-[2%] ">
             <div className="grid grid-cols-2 gap-5 m-3">
-              <Link href={`/my-details/1`}>
-                <AuctionCard isProfile />
-              </Link>
-              <Link href={`/my-details/1`}>
-                <AuctionCard isProfile />
-              </Link>
-              <Link href={`/my-details/1`}>
-                <AuctionCard isProfile />
-              </Link>
-              <Link href={`/my-details/1`}>
-                <AuctionCard isProfile />
-              </Link>
+              {postData?.map((x) => (
+                <Link href={`/my-details/1`}>
+                  <AuctionCard
+                    isProfile
+                    name={x.name}
+                    key={x._id}
+                    price={x.start_price}
+                    photo={x.photos[0].photo}
+                  />
+                </Link>
+              ))}
             </div>
             <div className="flex flex-row justify-center items-center my-[3%]">
               <div className="border shadow rounded hover:bg-green-500 m-2 w-15">

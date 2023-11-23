@@ -46,8 +46,6 @@ export default () => {
 
   const makeBid = async()=>{
     let res = await bidMutation.mutateAsync(bidData)
-
-
     if(res){
       toast.success('Bid created successfully')
     }else{
