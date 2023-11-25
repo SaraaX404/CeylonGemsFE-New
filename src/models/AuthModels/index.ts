@@ -23,4 +23,6 @@ export type UserDetails = {
   password: string;
 }
 
+export type RegisterUserRequest = UserDetails
+
 export type GetUserDetailsResponse = UserDetails

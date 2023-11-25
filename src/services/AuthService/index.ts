@@ -1,4 +1,4 @@
-import { GetUserDetailsResponse, LoginRequest } from "@/models";
+import { GetUserDetailsResponse, LoginRequest, RegisterUserRequest } from "@/models";
 import API from "../API";
 import { User } from "@/context/AuthContext/types";
 
@@ -74,3 +74,17 @@ export const GetProfile = async():Promise<GetUserDetailsResponse>=>{
   }
 }
 
+
+export const registerUser = async(data:RegisterUserRequest) =>{
+  try{
+      const res = await API.post('/users/', data)
+      if(res.data.token){
+          localStorage.setItem('token', res.data.token)
+          return true
+      }else{
+          throw new Error("Something bad happened")
+      }
+  }catch(e:any){
+      throw new Error(e.message)
+  }
+}
