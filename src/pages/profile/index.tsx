@@ -481,7 +481,7 @@ export default () => {
                 <div className="flex flex-row border border-gray-200 shadow justify-center items-center">
                   <div className="flex flex-row  cursor-pointer">
                     {y.status === "ACCEPTED" ? (
-                      <ChatBar ChatButton={ChatButton} name={y.postID.seller_id.first_name}/>
+                      <ChatBar ChatButton={ChatButton} name={y.postID.seller_id.first_name} id={y.postID.seller_id._id}/>
                     ) : (
                       <div className="flex flex-col items-center w-[86px] py-2">
                         <FaMoneyBill size={10} className="text-green-600" />

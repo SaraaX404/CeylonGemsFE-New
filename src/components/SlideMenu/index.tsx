@@ -5,14 +5,14 @@ import ChatBody from '../ChatBody'; // Import your ChatBody component here
 
 type RightSideDrawerProps = {
   name?: string;
+  id?:string;
   ChatButton: React.ComponentType<any>;
 };
 
-const RightSideDrawer: React.FC<RightSideDrawerProps> = ({ name, ChatButton }) => {
+const RightSideDrawer: React.FC<RightSideDrawerProps> = ({ name, ChatButton,id }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-    
     setIsOpen(open);
   };
 
@@ -25,7 +25,7 @@ const RightSideDrawer: React.FC<RightSideDrawerProps> = ({ name, ChatButton }) =
         <div
           role="presentation"
         >
-          <ChatBody name={name} />
+          <ChatBody name={name} id={id} />
         </div>
       </Drawer>
     </div>

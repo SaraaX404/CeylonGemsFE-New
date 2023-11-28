@@ -13,6 +13,7 @@ export type Post = {
     seller_id: {
       first_name: string;
       country: string;
+      _id:string;
     };
     fixed:boolean,
     highestPrice?:number,

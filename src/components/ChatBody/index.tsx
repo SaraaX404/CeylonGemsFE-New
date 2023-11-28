@@ -3,10 +3,11 @@ import Item from './Item.component'
 import ChatBody from './chat.component'
 
 type PropTypes = {
-    name?:string
+    name?:string,
+    id?:string
 }
 
-export default ({name}:PropTypes)=>{
+export default ({name, id}:PropTypes)=>{
     return (
         <div className='flex flex-row'>
         <div className='flex flex-col items-start w-[40%]'>
@@ -17,7 +18,7 @@ export default ({name}:PropTypes)=>{
             <Item name='Nimalsha Madushan'/>
         </div>
         <div className='w-[65%]  mx-[3%]'>
-            <ChatBody name={name}/>
+            <ChatBody name={name} id={id}/>
         </div>
         </div>
         
