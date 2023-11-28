@@ -39,7 +39,7 @@ const App = ({ name, id }: Props) => {
   const handleSendMessage = (text: string) => {
     const databaseRef = firebase
       .database()
-      .ref(`/chat/${id} - ${UserCTX.user?._id}`);
+      .ref(`/chat/${UserCTX.user?._id}/${id}`);
     databaseRef.push({
       value: {
         sender: UserCTX.user?._id || '',
@@ -53,13 +53,13 @@ const App = ({ name, id }: Props) => {
     // Fetch data from Firebase
     const databaseRef = firebase
       .database()
-      .ref(`/chat/${id} - ${UserCTX.user?._id}`); // Replace with your database path
+      .ref(`/chat/${UserCTX.user?._id}/${id}`); // Replace with your database path
     databaseRef.on("value", (snapshot) => {
       const dataSnapshot = snapshot.val();
       const dataArray: ChatMessage[] = dataSnapshot
         ? Object.values(dataSnapshot)
         : [];
-      setMessages(dataArray);
+      setMessages(dataArray)
     });
 
     // Cleanup the event listener when the component unmounts
@@ -67,6 +67,7 @@ const App = ({ name, id }: Props) => {
       databaseRef.off("value");
     };
   }, []);
+  
 
   return (
     <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
