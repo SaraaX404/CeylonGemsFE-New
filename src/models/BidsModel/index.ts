@@ -5,7 +5,7 @@ import { Post } from "../ProductModels"
 
 export type Bids = {
     status:'ACCEPTED' | 'REJECTED' | 'PENDING',
-    buyerId: GetUserDetailsResponse,
+    buyerID?: GetUserDetailsResponse,
     postID: string,
     price: number
 }

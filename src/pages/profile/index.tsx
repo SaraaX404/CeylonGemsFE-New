@@ -528,7 +528,7 @@ export default () => {
           <div className="border border-neutral-50 rounded shadow w-[64%] bg-white mt-[2%] ">
             <div className="grid grid-cols-2 gap-5 m-3">
               {postData?.map((x) => (
-                <Link href={`/my-details/1`}>
+                <Link href={`/my-details/${x._id}`}>
                   <AuctionCard
                     isProfile
                     name={x.name}

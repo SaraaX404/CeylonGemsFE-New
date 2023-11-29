@@ -8,6 +8,7 @@ export type LoginResponse = {
 }
 
 export type UserDetails = {
+  _id:string,
   first_name: string;
   last_name: string;
   nic: string;

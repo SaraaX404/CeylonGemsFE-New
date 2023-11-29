@@ -40,7 +40,7 @@ const App = ({ name, id, setReceiverID, receiverID }: Props) => {
   const UserCTX = useUserContext();
 
   useEffect(() => {
-    if (receiverID?.id == "") {
+    if (!receiverID?.id) {
       setReceiverID(
         {
           id: id || "",
@@ -80,7 +80,6 @@ const App = ({ name, id, setReceiverID, receiverID }: Props) => {
       const dataArray: ChatMessage[] = dataSnapshot
         ? Object.values(dataSnapshot).map((x: any) => x.value)
         : [];
-      console.log(dataArray, "de");
 
       setMessages(dataArray);
     };

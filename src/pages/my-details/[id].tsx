@@ -6,24 +6,46 @@ import { BsSearch } from "react-icons/bs";
 import { FaFacebookMessenger, FaMoneyBill } from "react-icons/fa";
 import { useQuery } from "react-query";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/router";
+import { getBidsByPost, getBidsBySeller } from "@/services/BidsService";
+import { GetBidsResponse } from "@/models/BidsModel";
+import ChatBar from "../../components/SlideMenu";
 
 const rows = [1, 2, 3];
 
 export default () => {
-  //const { id } = useParams();
+  const {query} = useRouter()
 
-  const [post, setPost] = useState<GetAllPostsResponse>(
-    {} as GetAllPostsResponse
+  const [bids, setBids] = useState<GetBidsResponse[]>([]);
+  const { data, error, refetch } = useQuery<GetAllPostsResponse, Error>("posts", () =>
+    GetPostsById(query?.id || '')
   );
-  // const { data, error } = useQuery<GetAllPostsResponse, Error>("posts", () =>
-  //   GetPostsById(Array.isArray(id) ? "" : id)
-  // );
 
-  // useEffect(() => {
-  //   if (data) {
-  //     setPost(data);
-  //   }
-  // }, [data]);
+  const ChatButton = () => {
+    return (
+      <div className="flex flex-col items-center w-[86px] py-2">
+        <FaFacebookMessenger size={10} className="text-blue-600" />{" "}
+        <h1 className="text-[10px] text-gray-600 font-semibold  ">Chat</h1>{" "}
+      </div>
+    );
+  };
+
+  const { data: bidData, refetch:BidRefetch } = useQuery<GetBidsResponse[], Error>(
+    "MyBids",
+    () => getBidsByPost(query?.id || '')
+  );
+
+
+  useEffect(() => {
+    if (Array.isArray(bidData)) {
+      setBids(bidData);
+    }
+  }, [bidData]);
+
+  useEffect(()=>{
+    refetch()
+    BidRefetch()
+  },[query.id, data, bidData])
 
   return (
     <Layout>
@@ -39,7 +61,7 @@ export default () => {
         <div className="flex flex-row items-start ">
           <div className="flex flex-row items-center ml-[20%] ">
             <div className="grid grid-rows-3 gap-2">
-              {post.photos.slice(0, 2).map((x) => {
+              {Array.isArray(data?.photos)&&data?.photos.slice(-3).map((x) => {
                 return (
                   <div
                     className="hover:scale-105 transition-transform duration-300"
@@ -47,7 +69,7 @@ export default () => {
                       width: "120px",
                       height: "120px", // Set the desired height here
                       backgroundImage:
-                        `url(${x})`,
+                      `url(https://firebasestorage.googleapis.com/v0/b/ceylongems-7f695.appspot.com/o/${x.photo}?alt=media)`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                     }}
@@ -65,7 +87,7 @@ export default () => {
                   width: "300px", // Set the desired width here
                   height: "376px", // Set the desired height here
                   backgroundImage:
-                    `url(${post.photos[post.photos.length - 1]})`,
+                    `url(https://firebasestorage.googleapis.com/v0/b/ceylongems-7f695.appspot.com/o/${Array.isArray(data?.photos)&&data?.photos[0].photo}?alt=media)`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -75,17 +97,17 @@ export default () => {
         </div>
         <div className="flex flex-col items-start ">
           <h1 className="text-gray-600 text-[32px] font-bold">
-            {post.name} for Sale!
+            {data?.name} for Sale!
           </h1>
           <h1 className="mr-[14%] text-gray-500 text-[16px] font-semibold leading-8 mt-3">
-            {post.description}
+            
           </h1>
           <div className="flex flex-row items-center justify-start mt-[2%]">
             <h1 className="text-gray-400 text-[32px] font-normal tracking-wide">
               Bidding Price :
             </h1>
             <h1 className="text-gray-600 text-[32px] font-semibold ml-2">
-              {post.start_price}$
+              {data?.start_price}
             </h1>
           </div>
 
@@ -136,20 +158,20 @@ export default () => {
             </h1>
           </div>
         </div>
-        {rows.map((x) => (
+        {Array.isArray(bidData)&&bidData.map((x) => (
           <div className="grid grid-cols-4 hover:bg-gray-200">
             <div className="flex flex-row border border-gray-200  shadow  justify-center items-center">
               <div className="flex flex-row   justify-center ">
                 <div className=" border border-neutral-50 rounded p-[5px]">
                   <h1 className="text-[13px] text-gray-600 font-semibold  py-1">
-                    Kasun Kalhara
+                    {x?.buyerID?.first_name} {x?.buyerID?.last_name} 
                   </h1>
                 </div>
               </div>
             </div>
             <div className="flex flex-row border border-gray-200  shadow justify-center items-center">
               <h1 className="text-[13px] text-gray-600 font-semibold  py-1">
-                {10000 * x} (LKR)
+                {x?.price} (LKR)
               </h1>
             </div>
             <div className="flex flex-row border border-gray-200  shadow justify-center items-center">
@@ -158,10 +180,7 @@ export default () => {
               </h1>
             </div>
             <div className="flex flex-row border border-gray-200 shadow justify-center items-center">
-              <FaFacebookMessenger
-                size={13}
-                className="text-blue-600 cursor-pointer"
-              />
+            <ChatBar ChatButton={ChatButton} name={x.buyerID?.first_name} id={x.buyerID?._id}/>
             </div>
           </div>
         ))}

@@ -4,7 +4,6 @@ import ChatBody from "./chat.component";
 import { useEffect, useState } from "react";
 import firebase from "../../firebase";
 import { useUserContext } from "@/context";
-import axios from "axios";
 
 type PropTypes = {
   name?: string;
@@ -33,7 +32,6 @@ export default ({ name, id }: PropTypes) => {
     const response = await fetch(
       `http://localhost:3000/users/${id}`
     );
-
 
     const data = await response?.json();
 
@@ -86,11 +84,6 @@ export default ({ name, id }: PropTypes) => {
       databaseRef.off("value");
     };
   }, [UserCTX.user?._id]);
-
-  
-
-
-
 
   return (
     <div className="flex flex-row">

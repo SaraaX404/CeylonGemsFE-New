@@ -18,8 +18,6 @@ export const GetPosts = async (): Promise<GetAllPostsResponse[]> => {
 };
 
 export const GetPostsById = async(id:string | string[] | undefined):Promise<GetAllPostsResponse>=>{
-
-
   try {
     const res = await API.get(`/posts/${id}`);
     console.log(res.data)
