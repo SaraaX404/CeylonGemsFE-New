@@ -60,7 +60,7 @@ const App = ({ name, id, setReceiverID, receiverID }: Props) => {
       },
     });
 
-    const databaseRef2 = firebase.database().ref(`/chat/${receiverID}`);
+    const databaseRef2 = firebase.database().ref(`/chat/${receiverID.id}`);
     databaseRef2.push({
       value: {
         sender: UserCTX.user?._id || "",

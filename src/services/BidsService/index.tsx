@@ -19,12 +19,19 @@ export const getBidsBySeller = async (): Promise<GetBidsResponse[]> => {
   }
 };
 
-export const getBidsByPost = async (id: string | string[] | undefined): Promise<GetBidsResponse[]> => {
-  console.log(id, 'id')
+export const getBidsByPost = async (
+  id: string | string[] | undefined
+): Promise<GetBidsResponse[]> => {
   try {
     const res = await API.get(`/bids/post/${id}`);
     return res.data;
   } catch (e) {
     throw e;
   }
+};
+
+export const closeBid = async (id: string | string[] | undefined) => {
+  await API.put(`/posts/UpdateStatus/${id}`, {status:'CLOSED'});
+  window.location.href = '/profile'
+  return true;
 };

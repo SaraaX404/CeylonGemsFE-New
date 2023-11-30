@@ -7,7 +7,7 @@ import { FaFacebookMessenger, FaMoneyBill } from "react-icons/fa";
 import { useQuery } from "react-query";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
-import { getBidsByPost, getBidsBySeller } from "@/services/BidsService";
+import { closeBid, getBidsByPost, getBidsBySeller } from "@/services/BidsService";
 import { GetBidsResponse } from "@/models/BidsModel";
 import ChatBar from "../../components/SlideMenu";
 
@@ -118,7 +118,10 @@ export default () => {
                 Delete{" "}
               </h1>
             </div>
-            <div className="cursor-pointer bg-blue-600 mt-[9%] mr-[4%] border-neutral-50 rounded flex flex-row items-center justify-center h-[60%] ">
+            <div className="cursor-pointer bg-blue-600 mt-[9%] mr-[4%] border-neutral-50 rounded flex flex-row items-center justify-center h-[60%] " onClick={()=> {
+              refetch()
+              closeBid(query.id)
+            }}>
               <h1 className="text-gray-100 text-[16px] font-semibold px-3 py-2 ">
                 {" "}
                 Close{" "}
