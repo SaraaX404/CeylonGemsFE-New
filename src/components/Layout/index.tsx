@@ -127,7 +127,15 @@ export default (props: PropTypes) => {
               <h1 className="font-semibold text-gray-600 cursor-pointer">
                 Contact
               </h1>
-              <ChatBar ChatButton={ChatButton} />
+              {UserCTX.user && (
+                <h1 className="font-semibold text-gray-600 cursor-pointer" onClick={()=>{
+                  localStorage.removeItem('token')
+                  window.location.href = '/login'
+                }}>
+                  Logout
+                </h1>
+              )}
+              {UserCTX.user && <ChatBar ChatButton={ChatButton} />}
             </div>
           </div>
           {UserCTX.user ? (
